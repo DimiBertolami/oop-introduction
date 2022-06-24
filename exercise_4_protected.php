@@ -1,69 +1,66 @@
 <?php
 
 declare(strict_types=1);
-
 class Beverage
 {
-
+    static string $ADDRESS = "Melkmarkt 9, 2000 Antwerpen";
     protected string $color;
     protected float $price;
     protected string $temperature;
-
-    /**
-     * @param string $color
-     * @param float $price
-     * @param string $temperature
-     */
-    public function __construct(string $color, float $price, string $temperature = 'cold')
+    function __construct(string $color, float $price)
     {
         $this->color = $color;
         $this->price = $price;
-        $this->temperature = $temperature;
+        $this->temperature = 'cold';
     }
-
+    public function getAddress():string{
+        return self::$ADDRESS;
+    }
     public function getInfo(): string
     {
-        return "This beverage is  " . $this->temperature . " and  " . $this->color;
+        return 'This beverage is ' . $this->temperature . ' and ' . $this->color . '.';
+    }
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+    public function setColor(string $color)
+    {
+        $this->color = $color;
+    }
+    function getPrice():float{
+        return $this->price;
+    }
+    function setPrice(float $price){
+        if($price<0){
+            return Error('Tried to set price to negative number');
+        }
+        $this->price = $price;
+    }
+    function getBar(){
+        return BARNAME;
     }
 }
-//class "Beer.php" extends "BEVERAGE.php";
+
 class Beer extends Beverage
 {
-    protected string $name;
-    protected float $alcoholPercentage;
-
-    /**
-     * @param string $name
-     * @param float $alcoholPercentage
-     */
-    public function __construct(string $name, float $alcoholPercentage, string $color, float $price)
+    private string $name;
+    private float $alcoholPercentage;
+    function __construct(string $color, float $price, string $name, float $alcoholPercentage)
     {
         parent::__construct($color, $price);
         $this->name = $name;
         $this->alcoholPercentage = $alcoholPercentage;
-        echo "Alcohol % (shoutout from within the construct)= ".$alcoholPercentage;
-        echo "\n";
     }
-
-    /**
-     * @return float
-     */
-    public function getAlcoholPercentage(): float
+    function getAlcoholPercentage(): float
     {
         return $this->alcoholPercentage;
     }
+    function beerInfo(): string
+    {
+        return "Hi i'm " . $this->name . " and have an alcochol percentage of " . $this->alcoholPercentage . " and I have a " . $this->color . " color.";
+    }
 }
-
-$Jupiler = new Beer('Jupiler', 5, 'yellow', 2);
-//echo "Alcohol % ="." ".$Jupiler->getAlcoholPercentage();
-echo "\n<br>";
-$duvel = new Beer('Duvel', 8.5, 'Yellow', 3.5);
-echo "\n<br>";
-//echo "Alcohol % = (hi from getAlcoholPercentage method)".$duvel->getAlcoholPercentage();
-//echo "\n<br>";
-$rootbeer = new Beverage('yellow', 3.5);
-//echo "rootbeer getInfo Method: ".$rootbeer->getInfo();
-
 /* EXERCISE 4
 
 Copy the code of exercise 2 to here and delete everything related to cola.
@@ -73,3 +70,21 @@ TODO: Make all the other prints work without error without changing the beverage
 
 USE TYPEHINTING EVERYWHERE!
 */
+
+
+$duvel = new Beer('blond', 3.5, 'Duvel', 8.5);
+//The other way hurts me! - There is only one way
+print_r('AlcoholPercentage: ' . $duvel->getAlcoholPercentage() . "%");
+echo '<br/>';
+print_r('color: ' . $duvel->getColor());
+echo '<br/>';
+print_r(
+    'Info:' . $duvel->getInfo()
+);
+echo '<br/>';
+echo '<br/>';
+$duvel->setColor('light');
+print_r($duvel->getColor());
+echo '<br/>';
+echo '<br/>';
+print_r($duvel->beerInfo());

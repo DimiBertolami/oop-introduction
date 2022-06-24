@@ -13,18 +13,18 @@ class Beverage
         $this->price = $price;
         $this->temperature = 'cold';
     }
-    public function getAddress():string{
+    function getAddress():string{
         return self::$ADDRESS;
     }
-    public function getInfo(): string
+    function getInfo(): string
     {
         return 'This beverage is ' . $this->temperature . ' and ' . $this->color . '.';
     }
-    public function getColor(): string
+    function getColor(): string
     {
         return $this->color;
     }
-    public function setColor(string $color)
+    function setColor(string $color)
     {
         $this->color = $color;
     }
@@ -33,7 +33,7 @@ class Beverage
     }
     function setPrice(float $price){
         if($price<0){
-            return Error('Tried to set price to negative number');
+            return Error('You really THINK I will pay for your DRINK?');
         }
         $this->price = $price;
     }
@@ -61,18 +61,28 @@ class Beer extends Beverage
         return "Hi i'm " . $this->name . " and have an alcochol percentage of " . $this->alcoholPercentage . " and I have a " . $this->color . " color.";
     }
 }
-/* EXERCISE 1
-TODO: Create a class beverage.
-TODO: Create the properties color (string), price (float) and temperature (string) and also foresee a construct.
-TODO: Have a default value "cold" in the construct for temperature.
-Remember for now we will use properties and methods that can be accessed from everywhere.
-TODO: Make a getInfo function which returns "This beverage is <temperature> and <color>."
-TODO: Instantiate an object which represents cola. Make sure that the color is set to black, the price equals 2 euro and the temperature to cold automatically
- print the getInfo on the screen.
-TODO: Print the temperature on the screen.
+/* EXERCISE 6
 
-USE TYPEHINTING EVERYWHERE!
+Copy the classes of exercise 2.
+
+TODO: Change the properties to private.
+TODO: Make a const barname with the value 'Het Vervolg'.
+TODO: Print the constant on the screen.
+TODO: Create a function in beverage and use the constant.
+TODO: Do the same in the beer class.
+TODO: Print the output of these functions on the screen.
+TODO: Make sure that every print is on a new line.
+
+Use typehinting everywhere!
 */
 
-$cola = new Beverage('black', 2);
-echo $cola->getInfo();
+define('BARNAME','Het Vervolg');
+print_r(BARNAME);
+$cola = new Beverage('black', -2);
+echo '<br/>';
+echo '<br/>';
+print_r($cola->getBar());
+$duvel = new Beer('blond', 3.5, 'Duvel', 8.5);
+echo '<br/>';
+echo '<br/>';
+print_r($duvel->getBar());
