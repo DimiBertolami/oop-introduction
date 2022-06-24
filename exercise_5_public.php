@@ -3,7 +3,6 @@
 declare(strict_types=1);
 class Beverage
 {
-    static string $ADDRESS = "Melkmarkt 9, 2000 Antwerpen";
     protected string $color;
     protected float $price;
     protected string $temperature;
@@ -12,33 +11,7 @@ class Beverage
         $this->color = $color;
         $this->price = $price;
         $this->temperature = 'cold';
-    }
-    public function getAddress():string{
-        return self::$ADDRESS;
-    }
-    public function getInfo(): string
-    {
-        return 'This beverage is ' . $this->temperature . ' and ' . $this->color . '.';
-    }
-    public function getColor(): string
-    {
-        return $this->color;
-    }
-    public function setColor(string $color)
-    {
-        $this->color = $color;
-    }
-    function getPrice():float{
-        return $this->price;
-    }
-    function setPrice(float $price){
-        if($price<0){
-            return Error('Tried to set price to negative number');
-        }
-        $this->price = $price;
-    }
-    function getBar(){
-        return BARNAME;
+        echo 'This beverage is ' . $this->temperature . ' and ' . $this->color . '.';
     }
 }
 
@@ -51,14 +24,7 @@ class Beer extends Beverage
         parent::__construct($color, $price);
         $this->name = $name;
         $this->alcoholPercentage = $alcoholPercentage;
-    }
-    function getAlcoholPercentage(): float
-    {
-        return $this->alcoholPercentage;
-    }
-    function beerInfo(): string
-    {
-        return "Hi i'm " . $this->name . " and have an alcochol percentage of " . $this->alcoholPercentage . " and I have a " . $this->color . " color.";
+        echo "Hi i'm " . $this->name . " and have an alcochol percentage of " . $this->alcoholPercentage . " and I have a " . $this->color . " color.";
     }
 }
 /* EXERCISE 5

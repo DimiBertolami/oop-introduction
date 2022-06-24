@@ -3,7 +3,6 @@
 declare(strict_types=1);
 class Beverage
 {
-    static string $ADDRESS = "Melkmarkt 9, 2000 Antwerpen";
     protected string $color;
     protected float $price;
     protected string $temperature;
@@ -12,9 +11,6 @@ class Beverage
         $this->color = $color;
         $this->price = $price;
         $this->temperature = 'cold';
-    }
-    public function getAddress():string{
-        return self::$ADDRESS;
     }
     public function getInfo(): string
     {
@@ -36,9 +32,6 @@ class Beverage
             return Error('Tried to set price to negative number');
         }
         $this->price = $price;
-    }
-    function getBar(){
-        return BARNAME;
     }
 }
 
@@ -65,22 +58,20 @@ class Beer extends Beverage
 
 Copy the code of exercise 2 to here and delete everything related to cola.
 
-TODO: Make all properties protected.
-TODO: Make all the other prints work without error without changing the beverage class.
+done: Make all properties protected.
+done: Make all the other prints work without error without changing the beverage class.
 
 USE TYPEHINTING EVERYWHERE!
 */
 
 
 $duvel = new Beer('blond', 3.5, 'Duvel', 8.5);
-//The other way hurts me! - There is only one way
+
 print_r('AlcoholPercentage: ' . $duvel->getAlcoholPercentage() . "%");
 echo '<br/>';
 print_r('color: ' . $duvel->getColor());
 echo '<br/>';
-print_r(
-    'Info:' . $duvel->getInfo()
-);
+print_r('Info:' . $duvel->getInfo());
 echo '<br/>';
 echo '<br/>';
 $duvel->setColor('light');
